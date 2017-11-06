@@ -1,0 +1,1588 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple API to manage user authentication",
+        "version": "1.0.0",
+        "title": "SimpleAuthenticationService"
+    },
+    "host": "localhost:8080",
+    "basePath": "/sas/v1",
+    "tags": [
+        {
+            "name": "apiadmin"
+        },
+        {
+            "name": "apiauth"
+        },
+        {
+            "name": "apime"
+        },
+        {
+            "name": "service"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/api/admin/totalusers": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get the total number of users",
+                "description": "Returns the number of user records",
+                "operationId": "getUserTotal",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "User number",
+                        "schema": {
+                            "$ref": "#/definitions/TotalData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}/close": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Close the specific user's account",
+                "description": "Returns a message if ok",
+                "operationId": "closeAcc",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmation message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}/reopen": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Reopens the specific user's account",
+                "description": "Returns a message if ok",
+                "operationId": "reopenAcc",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmation message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}/lock": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Lock the specific user's account",
+                "description": "Returns a message if ok",
+                "operationId": "lockAcc",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmation message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}/unlock": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Unlock the specific user's account",
+                "description": "Returns a message if ok",
+                "operationId": "unlockAcc",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmation message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get a specific user",
+                "description": "Returns the specified user details",
+                "operationId": "getUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User record",
+                        "schema": {
+                            "$ref": "#/definitions/UserData"
+                        }
+                    },
+                    "409": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Delete the specific user's account",
+                "description": "Returns a message if ok",
+                "operationId": "deleteAcc",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmation message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/triggers": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get the available email triggers",
+                "description": "Returns the email triggers",
+                "operationId": "getTriggers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Email triggers",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TriggerData"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/mail/{trigger}": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get the email message for the specified trigger",
+                "description": "Returns the configured message",
+                "operationId": "getMessage",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "trigger",
+                        "in": "path",
+                        "description": "email trigger",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email message",
+                        "schema": {
+                            "$ref": "#/definitions/SimpleEmail"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid trigger",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Delete the email message for the specified trigger",
+                "description": "Returns a confirmation message",
+                "operationId": "deleteMail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "trigger",
+                        "in": "path",
+                        "description": "email trigger",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid trigger",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/mail": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get the configured email messages",
+                "description": "Returns the configured messages",
+                "operationId": "getMessages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Email messages",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SimpleEmail"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Create or update the email message for the specified trigger",
+                "description": "Returns a confirmation message",
+                "operationId": "updateMail",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SimpleEmail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email message",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid trigger",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/users": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get all users",
+                "description": "Returns a listing of all user details",
+                "operationId": "getAllUsers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "User records",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserData"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/users/{first}/{max}": {
+            "get": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Get first to max users",
+                "description": "Returns a listing of all specified user details",
+                "operationId": "getUsers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "first",
+                        "in": "path",
+                        "description": "first record",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "max",
+                        "in": "path",
+                        "description": "last record",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User records",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserData"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user/{id}/{role}": {
+            "post": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Add a specific role to a specific user",
+                "description": "Returns the specified user details",
+                "operationId": "addRole",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "role to add",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User record",
+                        "schema": {
+                            "$ref": "#/definitions/UserData"
+                        }
+                    },
+                    "409": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "apiadmin"
+                ],
+                "summary": "Remove a specific role from a specific user",
+                "description": "Returns the specified user details",
+                "operationId": "removeRole",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "description": "role to add",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User record",
+                        "schema": {
+                            "$ref": "#/definitions/UserData"
+                        }
+                    },
+                    "409": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/forgotpwd": {
+            "get": {
+                "tags": [
+                    "apiauth"
+                ],
+                "summary": "Request a password reset email",
+                "description": "Reset email sent for specified address",
+                "operationId": "resetPasswd",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "user email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reset email sent",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "404": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error validating user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/resetpwd/{resettoken}": {
+            "post": {
+                "tags": [
+                    "apiauth"
+                ],
+                "summary": "Reset user's password",
+                "description": "Resets the user's password. Requires the valid reset token to be supplied",
+                "operationId": "resetPWD",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    },
+                    {
+                        "name": "resettoken",
+                        "in": "path",
+                        "description": "reset token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Password reset",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "404": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error validating user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/facebooklogin": {
+            "post": {
+                "tags": [
+                    "apiauth"
+                ],
+                "summary": "Authorize an existing user with a Facebook credential",
+                "description": "Return a JWT token for the user and a refresh token",
+                "operationId": "fbLogin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/FBToken"
+                        }
+                    },
+                    {
+                        "name": "web",
+                        "in": "query",
+                        "description": "web request",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token sent",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "403": {
+                        "description": "User forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error validating user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/auth": {
+            "post": {
+                "tags": [
+                    "apiauth"
+                ],
+                "summary": "Authorize an existing user with username & password",
+                "description": "Return a JWT token for the user and optionally a refresh token if web=false",
+                "operationId": "doLogin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    },
+                    {
+                        "name": "web",
+                        "in": "query",
+                        "description": "web request",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token sent",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "403": {
+                        "description": "User details invalid",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "404": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error validating user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/create": {
+            "post": {
+                "tags": [
+                    "apiauth"
+                ],
+                "summary": "Create a new user with username & password",
+                "description": "Return a JWT token for the user and a refresh token",
+                "operationId": "createUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "406": {
+                        "description": "User details invalid",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "409": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error validating user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/me/logout": {
+            "post": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Do user logout",
+                "description": "Withdraws refresh token based on presented refresh tokenid",
+                "operationId": "logOut",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "User logged out",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/newcred": {
+            "get": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Refresh token",
+                "description": "Renews JWT token based on presented refresh tokenid",
+                "operationId": "newCred",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "403": {
+                        "description": "User account locked",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "404": {
+                        "description": "Unknown refresh token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/delete": {
+            "delete": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Delete user account",
+                "description": "Deletes user based on presented refresh tokenid",
+                "operationId": "deleteAccount",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Used deleted",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error deleting user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/close": {
+            "post": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Close user account",
+                "description": "Closes user account based on presented refresh tokenid",
+                "operationId": "closeAccount",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Account closed",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error closing account",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/reopen": {
+            "post": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Reopen user account",
+                "description": "Reopens user account based on presented refresh tokenid",
+                "operationId": "reopenAccount",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Account reopened",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error reopening account",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/update": {
+            "post": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Update user account",
+                "description": "Updates account with supplied details based on presented refresh tokenid",
+                "operationId": "changeDetails",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoginData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Account reopened",
+                        "schema": {
+                            "$ref": "#/definitions/MessageData"
+                        }
+                    },
+                    "403": {
+                        "description": "User account locked",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error updating account",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/user": {
+            "get": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Get a specific user",
+                "description": "Returns the specified user details",
+                "operationId": "getMe",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "User record",
+                        "schema": {
+                            "$ref": "#/definitions/UserData"
+                        }
+                    },
+                    "409": {
+                        "description": "User doesn't exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/me/exchange": {
+            "get": {
+                "tags": [
+                    "apime"
+                ],
+                "summary": "Renew refresh token",
+                "description": "Renews refresh token based on presented refresh tokenid",
+                "operationId": "refresh",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed",
+                        "schema": {
+                            "$ref": "#/definitions/TokenData"
+                        }
+                    },
+                    "403": {
+                        "description": "User account locked",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "404": {
+                        "description": "Unknown refresh token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    },
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/service/confirm/{id}": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Confirm the user email address",
+                "description": "Redirects to the specified confirmation page",
+                "operationId": "confirmEmail",
+                "produces": [
+                    "text/html"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "303": {
+                        "description": "redirect to the confirmation page",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Error querying database",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                }
+            }
+        },
+        "/service/cert": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Get the public JWT certificate",
+                "description": "Returns the X.509 cert used to sign JWT tokens",
+                "operationId": "getCert",
+                "produces": [
+                    "text/plain"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "The X.509 certificate",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Certificate not available",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorData"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "description": "",
+            "type": "apiKey",
+            "name": "x-api-key",
+            "in": "header"
+        },
+        "bearer": {
+            "description": "",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "TotalData": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "ErrorData": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "MessageData": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "TriggerData": {
+            "type": "object",
+            "properties": {
+                "triggerTag": {
+                    "type": "string"
+                }
+            }
+        },
+        "SimpleEmail": {
+            "type": "object",
+            "properties": {
+                "triggerTag": {
+                    "type": "string"
+                },
+                "sender": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "personal": {
+                    "type": "string"
+                },
+                "body": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserData": {
+            "type": "object",
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "last": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "userid": {
+                    "type": "string"
+                },
+                "fullname": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "locked": {
+                    "type": "boolean"
+                },
+                "closed": {
+                    "type": "boolean"
+                },
+                "confirmed": {
+                    "type": "boolean"
+                },
+                "facebook": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "LoginData": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "TokenData": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "FBToken": {
+            "type": "object",
+            "properties": {
+                "fbtoken": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
