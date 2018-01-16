@@ -102,7 +102,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.bluberrie.auth.simplauthservice.App</mainClass>
+					<mainClass>io.bluberrie.auth.simplauthservice.App</mainClass>
 				</configuration>
 			</plugin>
 
@@ -169,7 +169,7 @@
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<version>2.2</version>
 						<configuration>
-							<url>https://eatzee.life/manager/text</url>
+							<url>https://localhost/manager/text</url>
 							<server>tomcat-light</server>
 							<path>/sas</path>
 						</configuration>
