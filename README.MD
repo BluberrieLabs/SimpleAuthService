@@ -6,26 +6,43 @@ SimpleAuthService provides a [REST API](https://bluberrielabs.github.io/SimpleAu
 
 User passwords are hashed using PBKDF2 with SHA512 before storage.
 
-## Limitations
-
-Currently, the service can only generate tokens for a single JWT audience.
-
-The tool is designed to be very lightweight and provide the minimum functionality required to run a mobile app or website where the backend is secured with JWT tokens. It does not implement a full OAuth or OpenID flow.
-
 ## Deployment
 
-Binary
+SimpleAuthService requires Tomcat (or similar servlet engine) and optionally a database. There are several ways to deploy the software. 
 
-Docker
+### Docker
 
-Building from source
+The easiest way to run the software is using the preconfigured docker image. 
+
+`docker pull bluberrieio/simpleauthservice:latest`
+
+Once downloaded, configure the sas.properties file (see next section) and JWT signing certificates and place them in a folder that is mounted at /etc/sas in the docker image. The Docker container used a MySQL database backend, the configuration details of which are given in the [example sas.properties file](https://github.com/BluberrieLabs/SimpleAuthService/blob/master/docs/sas.\
+properties.example), and which should not be changed. 
+
+For instance, if you place the files in /home/user/sas, you could run SimpleAuthService with the command: 
+
+`docker run -v /home/user/sas:/etc/sas -p 127.0.0.1:8080:8080 -i -t bluberrieio/simpleauthservice`
+
+You can then get the openapi.json specification document to check the service is running with:
+
+`curl http://localhost:8080/sas/v1/swagger.json`
+
+### Binary
+
+To deploy the war file to the Java servlet container of your choice. By default, it will use an on disk h2 database. If you would like to use a different RDBMS such as MySQL, create an empty database and user and configure the details in `sas.properties`. See the next section for more details. 
+
+### Building from source
+
+You can build the war file yourself from the latest sourcecode using maven with `mvn compile war:war`.
 
 ## Configuration
 
-The service is configured via a Java properties file named sas.properties, read from one of the following locations:
+The service is configured via a Java properties file named `sas.properties`, read from one of the following locations:
 
-* /etc/sas/sas.properties
-* $HOME/.sas/sas.properties
+* `/etc/sas/sas.properties`
+* `$HOME/.sas/sas.properties`
+
+An example sas.properties file can be found in the [docs](https://github.com/BluberrieLabs/SimpleAuthService/blob/master/docs/sas.properties.example) folder. 
 
 The following properties should be set to configured the service:
 
@@ -100,6 +117,12 @@ SimpleAuthService supports two user roles:
 2. ADMINISTRATOR - required to access the admin services.
 
 The initial user account (configured in the sas.properties file) is given the ADMINISTRATOR role, and allowed to grant that role to other users.
+
+## Limitations
+
+Currently, the service can only generate tokens for a single JWT audience.
+
+The tool is designed to be very lightweight and provide the minimum functionality required to run a mobile app or website where the backend is secured with JWT tokens. It does not implement a full OAuth or OpenID flow.
 
 ## Licence
 
